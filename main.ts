@@ -30,6 +30,7 @@ scene.onOverlapTile(SpriteKind.Projectile, assets.tile`myTile`, function (sprite
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (Mario.vy == 0) {
+        music.thump.play()
         Mario.vy = -160
     }
 })
@@ -108,6 +109,7 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile2`, function (sprite, l
     info.changeScoreBy(1)
     tiles.placeOnRandomTile(Mario, sprites.dungeon.collectibleRedCrystal)
     BarrelSpeed += 15
+    music.beamUp.play()
 })
 scene.onOverlapTile(SpriteKind.Projectile, sprites.dungeon.collectibleRedCrystal, function (sprite, location) {
     sprite.destroy()
