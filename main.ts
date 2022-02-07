@@ -26,7 +26,7 @@ function CreatePlayer () {
     scene.cameraFollowSprite(Mario)
 }
 scene.onOverlapTile(SpriteKind.Projectile, assets.tile`myTile`, function (sprite, location) {
-    sprite.vx = 55
+    sprite.vx = BarrelSpeed
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (Mario.vy == 0) {
@@ -102,7 +102,12 @@ function intKong () {
     }
 }
 scene.onOverlapTile(SpriteKind.Projectile, assets.tile`myTile0`, function (sprite, location) {
-    sprite.vx = -55
+    sprite.vx = BarrelSpeed * -1
+})
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile2`, function (sprite, location) {
+    info.changeScoreBy(1)
+    tiles.placeOnRandomTile(Mario, sprites.dungeon.collectibleRedCrystal)
+    BarrelSpeed += 15
 })
 scene.onOverlapTile(SpriteKind.Projectile, sprites.dungeon.collectibleRedCrystal, function (sprite, location) {
     sprite.destroy()
@@ -154,7 +159,10 @@ function startingBarrels () {
 let Barrel: Sprite = null
 let Kong: Sprite = null
 let Mario: Sprite = null
+let BarrelSpeed = 0
 info.setLife(3)
+info.setScore(1)
+BarrelSpeed = 55
 tiles.setTilemap(tilemap`level1`)
 CreatePlayer()
 intKong()
@@ -176,6 +184,6 @@ game.onUpdateInterval(3000, function () {
         . . . f f f f f f f . . . 
         `, SpriteKind.Projectile)
     tiles.placeOnRandomTile(Barrel, assets.tile`myTile1`)
-    Barrel.vx = -55
+    Barrel.vx = BarrelSpeed * -1
     Barrel.ay = 200
 })
