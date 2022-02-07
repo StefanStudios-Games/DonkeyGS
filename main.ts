@@ -21,6 +21,18 @@ function moveSelector (direction: string) {
         }
     }
 }
+controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (gameType == 0) {
+        Selector.destroy()
+        if (Selector.x == 30) {
+        	
+        } else if (Selector.x == 78) {
+            CallDonkeyKong()
+        } else if (Selector.x == 126) {
+        	
+        }
+    }
+})
 function CreatePlayer () {
     Mario = sprites.create(img`
         . . . . . . f f f f f f . . . . 
@@ -54,15 +66,8 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
             music.knock.play()
             Mario.vy = -160
         }
-    } else if (gameType == 0) {
-        Selector.destroy()
-        if (Selector.x == 30) {
-        	
-        } else if (Selector.x == 78) {
-            CallDonkeyKong()
-        } else if (Selector.x == 126) {
-        	
-        }
+    } else if (gameType == 1) {
+    	
     }
 })
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
