@@ -1,5 +1,5 @@
 scene.onOverlapTile(SpriteKind.Projectile, assets.tile`myTile`, function (sprite, location) {
-    Barrel.vx = 30
+    sprite.vx = 60
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (Mario.vy == 0) {
@@ -47,7 +47,10 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
         `)
 })
 scene.onOverlapTile(SpriteKind.Projectile, assets.tile`myTile0`, function (sprite, location) {
-    Barrel.vx = -30
+    sprite.vx = -60
+})
+scene.onOverlapTile(SpriteKind.Projectile, sprites.dungeon.collectibleRedCrystal, function (sprite, location) {
+    sprite.destroy()
 })
 let Barrel: Sprite = null
 let Mario: Sprite = null
@@ -70,26 +73,27 @@ Mario = sprites.create(img`
     . . . . . . f f f f f f . . . . 
     . . . . . . . f f f . . . . . . 
     `, SpriteKind.Player)
+tiles.placeOnRandomTile(Mario, sprites.dungeon.collectibleRedCrystal)
 controller.moveSprite(Mario, 100, 0)
 Mario.ay = 200
 scene.cameraFollowSprite(Mario)
-game.onUpdateInterval(1000, function () {
+game.onUpdateInterval(2000, function () {
     Barrel = sprites.create(img`
-        . . f f f f f f f f f f f f . . 
-        . f e e e e e e e e e e e 2 f . 
-        f e 4 4 4 4 4 4 4 4 4 4 4 e 2 f 
-        f e e e e e e e e e e e e e e f 
-        f e 4 4 4 4 4 4 4 4 4 4 4 e e f 
-        f e e e e e e e e e e e e e e f 
-        f e 4 4 4 4 4 4 4 4 4 4 4 e e f 
-        f e e e e e e e e e e e e e e f 
-        f e 4 4 4 4 4 4 4 4 4 4 4 e e f 
-        f e e e e e e e e e e e e e e f 
-        f e e e e e e e e e e e e e e f 
-        . f e e e e e e e e e e e e f . 
-        . . f f f f f f f f f f f f . . 
+        . . . f f f f f f f . . . 
+        . . f 4 e e e e e e f . . 
+        . f 4 e e e e e e e e f . 
+        f 4 e e e e e e e e e e f 
+        f e e e e e e e e e e e f 
+        f e e e e e e e e e e e f 
+        f e e e e e f e e e e e f 
+        f e e e e e e e e e e e f 
+        f e e e e e e e e e e e f 
+        f e e e e e e e e e e e f 
+        . f e e e e e e e e 2 f . 
+        . . f e e e e e e 2 f . . 
+        . . . f f f f f f f . . . 
         `, SpriteKind.Projectile)
     tiles.placeOnRandomTile(Barrel, assets.tile`myTile1`)
-    Barrel.vx = -30
+    Barrel.vx = -60
     Barrel.ay = 200
 })
