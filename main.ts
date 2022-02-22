@@ -1062,6 +1062,7 @@ game.onUpdateInterval(2000, function () {
             .......f77777777777777f.......
             .......f77777777777777f.......
             `, SpriteKind.Wall)
+        FlappyBirdWalls.setFlag(SpriteFlag.AutoDestroy, true)
         FlappyBirdWalls.setPosition(155, randint(50, 100))
         FlappyBirdWalls.setVelocity(-50, 0)
     }
